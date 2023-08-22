@@ -2,13 +2,17 @@ import sys
 
 import pygame
 
+from settings import Settings
+
 class AlienInvasion:
 	"""Class for managing resources and game behavior"""
 	def __init__(self):
 		"""Initializing the game and creating resources"""
 		pygame.init()
+		self.settings = Settings()
 
-		self.screen = pygame.display.set_mode((1200, 760))
+		self.screen = pygame.display.set_mode(
+			(self.settings.screen_width, self.settings.screen_height))
 		pygame.display.set_caption("Alien Invasion")
 
 	def run_game(self):
@@ -18,6 +22,7 @@ class AlienInvasion:
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_ESCAPE:
 						sys.exit()
+			self.screen.fill(self.settings.bg_color)
 			#Show last rendered screen
 			pygame.display.flip()
 
