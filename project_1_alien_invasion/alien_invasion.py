@@ -21,14 +21,18 @@ class AlienInvasion:
 	def run_game(self):
 		"""Starts the main loop of the game"""
 		while True:
-			for event in pygame.event.get():
-				if event.type == pygame.KEYDOWN:
-					if event.key == pygame.K_ESCAPE:
-						sys.exit()
+			self._check_events()
 			self.screen.fill(self.settings.bg_color)
 			self.ship.blitme()
 			#Show last rendered screen
 			pygame.display.flip()
+
+	def _check_events(self):
+		"""Handles keyboard and mouse events"""
+		for event in pygame.event.get():
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_ESCAPE:
+						sys.exit()
 
 if __name__ == '__main__':
 	#Creates game instance and runs it
