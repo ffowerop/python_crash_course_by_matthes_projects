@@ -23,7 +23,9 @@ class AlienInvasion:
 
 		self.ship = Ship(self)
 		self.bullets = pygame.sprite.Group()
-		self.alien = Alien(self)
+		self.aliens = pygame.sprite.Group()
+
+		self._create_fleet()
 
 	def run_game(self):
 		"""Starts the main loop of the game"""
@@ -44,6 +46,11 @@ class AlienInvasion:
 		for bullet in self.bullets.copy():
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
+
+	def _create_fleet(self):
+		"""Creats invasion fleet"""
+		alien = Alien(self)
+		self.aliens.add(alien)
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
@@ -77,7 +84,7 @@ class AlienInvasion:
 		for bullet in self.bullets.sprites():
 			bullet.draw()
 		self.ship.blitme()
-		self.alien.blitme()
+		self.aliens.draw(self.screen)
 		#Show last rendered screen
 		pygame.display.flip()
 
