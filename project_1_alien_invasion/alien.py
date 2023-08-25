@@ -12,9 +12,8 @@ class Alien(Sprite):
 		#Every new alien appears in top left corner of the screen
 		self.rect.x = self.rect.width
 		self.rect.y = self.rect.height
+		#Saving alien width and height
+		ai_game.alien_width = self.rect.width
+		ai_game.alien_height = self.rect.height
 		#Saving float coordinates of an alien's center
 		self.x = float(self.rect.x)
-
-	def blitme(self):
-		#Draws an alien in current position
-		self.screen.blit(self.image, self.rect)

@@ -47,10 +47,23 @@ class AlienInvasion:
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
 
+	def _create_alien(self, alien_number, row_number):
+		alien = Alien(self)
+		alien.rect.x = self.alien_width + self.alien_width * 2 * alien_number
+		alien.rect.y = self.alien_height + self.alien_height * 2 * row_number
+		return alien
+
 	def _create_fleet(self):
 		"""Creats invasion fleet"""
 		alien = Alien(self)
-		self.aliens.add(alien)
+		available_space_x = self.settings.screen_width - 2 * self.alien_width
+		number_aliens_x = available_space_x // (self.alien_width * 2)
+		available_space_y = (self.settings.screen_height - 
+								3 * self.alien_height - self.alien_height)
+		number_rows = available_space_y // (self.alien_height * 2)
+		for j in range (number_rows):
+			for i in range(number_aliens_x):
+				self.aliens.add(self._create_alien(i, j))
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
