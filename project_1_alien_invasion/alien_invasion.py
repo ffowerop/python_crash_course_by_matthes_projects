@@ -28,15 +28,17 @@ class AlienInvasion:
 		while True:
 			self._check_events()
 			self.ship.update()
-			self.bullets.update()
-			self._remove_flow_away_bullets()
+			self._update_bullets()
 			self._update_screen()
 
 	def _fire_bullet(self):
-		new_bullet = Bullet(self)
-		self.bullets.add(new_bullet)
+		if len(self.bullets) < self.settings.bullet_allowed:
+			new_bullet = Bullet(self)
+			self.bullets.add(new_bullet)
 
-	def _remove_flow_away_bullets(self):
+	def _update_bullets(self):
+		self.bullets.update()
+		#Removes flown away from screen bullets
 		for bullet in self.bullets.copy():
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
