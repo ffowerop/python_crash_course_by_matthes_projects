@@ -20,6 +20,7 @@ class AlienInvasion:
 		pygame.display.set_caption("Alien Invasion")
 
 		self.ship = Ship(self)
+		self.bullets = pygame.sprite.Group()
 
 	def run_game(self):
 		"""Starts the main loop of the game"""
@@ -56,6 +57,7 @@ class AlienInvasion:
 		"""Updates the screen image and shows new screen"""
 		self.screen.fill(self.settings.bg_color)
 		self.ship.blitme()
+		self.bullets.update()
 		#Show last rendered screen
 		pygame.display.flip()
 
