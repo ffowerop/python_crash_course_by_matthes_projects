@@ -29,11 +29,17 @@ class AlienInvasion:
 			self._check_events()
 			self.ship.update()
 			self.bullets.update()
+			self._remove_flow_away_bullets()
 			self._update_screen()
 
 	def _fire_bullet(self):
 		new_bullet = Bullet(self)
 		self.bullets.add(new_bullet)
+
+	def _remove_flow_away_bullets(self):
+		for bullet in self.bullets.copy():
+			if bullet.rect.bottom <= 0:
+				self.bullets.remove(bullet)
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
@@ -63,9 +69,8 @@ class AlienInvasion:
 
 	def _update_screen(self):
 		"""Updates the screen image and shows new screen"""
-		self.screen.fill(self.settings.bg_color)
-		
-		for bullet in self.bullets:
+		self.screen.fill(self.settings.bg_color)		
+		for bullet in self.bullets.sprites():
 			bullet.draw()
 		self.ship.blitme()
 		#Show last rendered screen
