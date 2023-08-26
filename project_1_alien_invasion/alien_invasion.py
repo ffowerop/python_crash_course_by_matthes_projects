@@ -47,6 +47,8 @@ class AlienInvasion:
 		for bullet in self.bullets.copy():
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
+		collisions = pygame.sprite.groupcollide(
+			self.bullets, self.aliens, True, True)
 
 	def _create_alien(self, alien_number, row_number):
 		alien = Alien(self)
@@ -83,6 +85,8 @@ class AlienInvasion:
 		and updates all alien positions"""
 		self._check_fleet_edges()
 		self.aliens.update()
+
+
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
