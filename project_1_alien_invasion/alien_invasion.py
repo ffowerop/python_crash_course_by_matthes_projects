@@ -67,7 +67,21 @@ class AlienInvasion:
 			for i in range(number_aliens_x):
 				self.aliens.add(self._create_alien(i, j))
 
+	def _check_fleet_edges(self):
+		for alien in self.aliens.sprites():
+			if alien.check_edges():
+				self._change_fleet_direction()
+				break
+
+	def _change_fleet_direction(self):
+		for alien in self.aliens.sprites():
+			alien.rect.y += self.settings.fleet_drop_speed
+		self.settings.fleet_direction *= -1
+
 	def _update_aliens(self):
+		"""Checks if fleet has reached the edge of screen
+		and updates all alien positions"""
+		self._check_fleet_edges()
 		self.aliens.update()
 
 	def _check_keydown_events(self, event):
