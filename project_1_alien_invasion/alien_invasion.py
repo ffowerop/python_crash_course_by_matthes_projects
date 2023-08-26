@@ -33,6 +33,7 @@ class AlienInvasion:
 			self._check_events()
 			self.ship.update()
 			self._update_bullets()
+			self._update_aliens()
 			self._update_screen()
 
 	def _fire_bullet(self):
@@ -49,7 +50,8 @@ class AlienInvasion:
 
 	def _create_alien(self, alien_number, row_number):
 		alien = Alien(self)
-		alien.rect.x = self.alien_width + self.alien_width * 2 * alien_number
+		alien.x = self.alien_width + self.alien_width * 2 * alien_number
+		alien.rect.x = alien.x
 		alien.rect.y = self.alien_height + self.alien_height * 2 * row_number
 		return alien
 
@@ -64,6 +66,9 @@ class AlienInvasion:
 		for j in range (number_rows):
 			for i in range(number_aliens_x):
 				self.aliens.add(self._create_alien(i, j))
+
+	def _update_aliens(self):
+		self.aliens.update()
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
