@@ -160,7 +160,12 @@ class AlienInvasion:
 
 	def _check_play_button(self, mouse_pos):
 		if self.play_button.rect.collidepoint(mouse_pos):
+			self.game_stats.reset_stats()
 			self.game_stats.game_active = True
+			self.aliens.empty()
+			self.bullets.empty()
+			self._create_fleet()
+			self.ship.center_ship()
 
 	def _update_screen(self):
 		"""Updates the screen image and shows new screen"""
