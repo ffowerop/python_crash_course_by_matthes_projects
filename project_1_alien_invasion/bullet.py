@@ -17,7 +17,7 @@ class Bullet(Sprite):
 
 	def update(self):
 		"""Moves bullet up the screen"""
-		self.y -= self.settings.bullet_speed
+		self.y -= self.settings.bullet_speed_factor
 		self.rect.y = self.y
 
 	def draw(self):
