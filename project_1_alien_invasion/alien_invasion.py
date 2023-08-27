@@ -68,6 +68,7 @@ class AlienInvasion:
 			aliens_destroyed = len(list(collisions.values())[0])
 			self.game_stats.score += self.settings.alien_points * aliens_destroyed
 			self.sb.prep_score()
+			self.sb.check_high_score()
 		#Destroys all bullets and creates new alien fleet
 		if not self.aliens:
 			self.bullets.empty()
@@ -140,6 +141,7 @@ class AlienInvasion:
 
 	def _check_keydown_events(self, event):
 		if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
+			self.game_stats.save_high_score()
 			sys.exit()
 		if event.key == pygame.K_RIGHT:
 			self.ship.moving_right = True
@@ -158,6 +160,7 @@ class AlienInvasion:
 		"""Handles keyboard and mouse events"""
 		for event in pygame.event.get():
 				if event.type == pygame.QUIT:
+					self.game_stats.save_high_score()
 					sys.exit()
 				elif event.type == pygame.KEYDOWN:
 					self._check_keydown_events(event)
