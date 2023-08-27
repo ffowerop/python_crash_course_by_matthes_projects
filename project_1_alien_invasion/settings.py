@@ -8,14 +8,14 @@ class Settings:
 		#Ship parametrs
 		self.ship_limit = 3
 		#Bullet parametrs
-		self.bullet_width = 3000
+		self.bullet_width = 3
 		self.bullet_height = 15
 		self.bullet_color = (60, 60, 60)
 		self.bullet_allowed = 10
 		#Alien parametrs
-		self.fleet_drop_speed = 30
+		self.fleet_drop_speed = 10
 
-		self.speedup_scale = 5
+		self.speedup_scale = 1.1
 		self.score_scale = 1.5
 		self.intitialize_dynamic_settings()
 
