@@ -122,6 +122,7 @@ class AlienInvasion:
 			sleep(0.5)
 		else:
 			self.game_stats.game_active = False
+			pygame.mouse.set_visible(True)
 	def _check_aliens_bottom(self):
 		#Checks if any alien reaches the bottom
 		for alien in self.aliens.sprites():
@@ -167,6 +168,7 @@ class AlienInvasion:
 			self.bullets.empty()
 			self._create_fleet()
 			self.ship.center_ship()
+			pygame.mouse.set_visible(False)
 
 	def _update_screen(self):
 		"""Updates the screen image and shows new screen"""
