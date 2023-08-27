@@ -12,6 +12,7 @@ class GameStats():
 	def reset_stats(self):
 		self.ships_left = self.settings.ship_limit
 		self.score = 0
+		self.level = 1
 
 	def load_high_score(self):
 		with open('highscore.json') as f:
